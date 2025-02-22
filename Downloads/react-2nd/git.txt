@@ -1,0 +1,197 @@
+@@@@@@@@@ push/update code to github
+cd "D:\codes yt dl\js"
+$ cd /c/Users/FUJITSU/Documents/js
+cd "C:\Users\HP\Downloads\coding\js"
+https://github.com/Aphea21/react-2nd.git
+git remote -v
+git add .
+git commit -m "Backup: Updated project files"
+git push origin main
+
+@@@@@@@@@ update code in another device from gihub
+cd /c/Users/FUJITSU/Documents/js
+cd "C:\Users\HP\Downloads\coding\js"
+cd "C:\xampp\htdocs\library"
+git branch
+git checkout main
+git pull https://github.com/Aphea21/library.git
+git pull https://github.com/Aphea21/js.git
+git log
+
+@@@@@@@@@ history commits device from local
+ cd /c/Users/FUJITSU/Documents/js
+$ git log --pretty=format:"%h - %an, %ad : %s" --date=iso
+9cf6dca - Aphea21, 2025-01-30 01:27:50 +0800 : designing
+a55043a - Aphea21, 2025-01-29 02:47:57 +0800 : keydown
+
+
+@@@@@@@@@
+# Generate application encryption key
+php artisan key:generate  # Generates a unique APP_KEY in the .env file
+
+# Clear cache and apply changes
+php artisan config:clear  # Clears cached configurations
+php artisan cache:clear   # Clears Laravel cache
+
+# Restart the Laravel development server
+php artisan serve  # Starts the local development server at http://127.0.0.1:8000
+
+# Additional step (if needed): Manually check .env file
+# Ensure APP_KEY exists in .env
+# APP_KEY=base64:your_generated_key_here
+
+
+npm install   # Installs project dependencies, including Vite  
+npm run build   # Generates production assets, including manifest.json  
+npm run dev   # Starts Vite development server for live updates  
+php artisan optimize:clear   # Clears Laravel cache to refresh settings  
+php artisan serve   # Starts Laravel's local development server  
+
+
+
+@@@@@@@@@
+# Check the status of the local repository
+git status  # Shows uncommitted changes before pulling
+
+# Fetch the latest changes from the remote repository
+git fetch origin  # Downloads updates without merging
+
+# View recent commits and updates
+git log --oneline --graph --all --decorate  # Displays commit history in a readable format
+
+# Pull the latest changes from the remote repository
+git pull origin main  # Merges updates into the local branch (replace 'main' if needed)
+
+# Resolve merge conflicts if any
+git add .  # Stages all resolved files
+git commit -m "Resolved merge conflicts"  # Commits after fixing conflicts
+
+# Verify changes and restart Laravel
+php artisan serve  # Runs the Laravel server to check if issues are resolved
+
+@@@@@@@@@ Git Force Pull Summary
+# Reset any local changes (WARNING: This will discard uncommitted changes)
+git reset --hard HEAD  # Resets local changes to the latest committed state
+
+# Fetch the latest changes from the remote repository
+git fetch origin  # Downloads updates without merging
+
+# Forcefully reset local branch to match remote (WARNING: This will overwrite local changes)
+git reset --hard origin/main  # Replaces 'main' with the correct branch if needed
+
+# Pull the latest changes from the remote repository
+git pull origin main --force  # Forces the update even if there are conflicts
+
+# Verify changes and restart Laravel
+php artisan serve  # Runs the Laravel server to check if issues are resolved
+
+
+FUJITSU@Oprekin-PC MINGW64 ~
+$ cd "D:\codes yt dl\js"
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git remote -v
+origin  https://github.com/Aphea21/js.git (fetch)
+origin  https://github.com/Aphea21/js.git (push)
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git add .
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git commit -m "Backup: Updated project files"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git push origin main
+
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 358.95 KiB | 3.07 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Aphea21/js.git
+   bbf7857..546dd11  main -> main
+
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$
+
+
+FUJITSU@Oprekin-PC MINGW64 /
+$ cd /c/Users/FUJITSU/Documents/js
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ gi branch
+bash: gi: command not found
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git branch
+* main
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git checkut main
+git: 'checkut' is not a git command. See 'git --help'.
+
+The most similar command is
+        checkout
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git checkout main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git pull original main
+fatal: 'original' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git pull https://github.com/Aphea21/js.git
+
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 1.99 KiB | 15.00 KiB/s, done.
+From https://github.com/Aphea21/js
+ * branch            HEAD       -> FETCH_HEAD
+Updating 10bc320..361281c
+Fast-forward
+ boolean.html | 104 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 103 insertions(+), 1 deletion(-)
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git log
+commit 361281c32aa078a6f28f767c70cef3adf1fa9828 (HEAD -> main)
+Author: Aphea21 <johnnybrader08@gmail.com>
+Date:   Tue Jan 21 21:51:37 2025 +0800
+
+    guard
+
+commit 10bc3204a7738dd6b8535d8ff6b2c242e10952ae (origin/main)
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:28:29 2025 +0800
+
+    truthy
+
+commit 546dd1175c575c4d488f748581ce5635feaec52c
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:16:30 2025 +0800
+
+    Initial commit: truthy
+
+commit bbf7857d1cfe18b179c334506a29f1ecafced3fc
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:05:25 2025 +0800
+
+    s
+
+:
