@@ -1,0 +1,79 @@
+feat: Implement book update form with real-time validation
+
+- Added a full HTML form for updating book details, including inputs for title, author, price, quantity, description, category, and image uploads
+- Integrated existing book data into form fields for pre-filled values
+- Assigned unique IDs to each input for easy DOM targeting
+- Implemented real-time front-end validation using JavaScript for all form fields:
+  - Title length check
+  - Author name format validation
+  - Numeric and range checks for price and quantity
+  - Description length enforcement
+  - File extension validation for uploaded images
+- Displayed inline validation messages under each input field
+- Ensured form submission is blocked until all fields are valid
+
+
+
+
+feat: Enhance sidebar with modern UI features
+
+
+
+- Styled profile section with circular avatar
+- Added button highlight on hover and active states
+- Implemented dark/light mode toggle
+- Integrated Remix Icons for better visual clarity
+- Made sidebar collapsible on smaller screens
+
+
+691d130 Thu Feb 13 22:25:01 2025 accept php HP
+DATABASE FILES/library5 no data.sql
+DATABASE FILES/library6.sql
+DATABASE FILES/txt/notes
+app/Http/Controllers/AdminController.php
+app/Models/AcceptedBook.php
+database/migrations/2025_02_12_131800_create_accepted_books_table.php
+resources/views/admin/approve.blade.php
+resources/views/admin/borrow_request.blade.php
+
+1dd6612 Thu Feb 13 03:03:49 2025 approved-books pc
+DATABASE FILES/library4.sql
+DATABASE FILES/txt/git
+app/Http/Controllers/AdminController.php
+app/Models/AcceptedBook.php
+resources/views/admin/approve.blade.php
+resources/views/admin/sidebar.blade.php
+routes/web.php
+
+946463e Wed Feb 12 21:59:58 2025 Backup: Updated project files
+DATABASE FILES/library3.sql
+DATABASE FILES/txt/git
+app/Http/Controllers/AdminController.php
+app/Models/AcceptedBook.php
+database/migrations/2025_02_12_131800_create_accepted_books_table.php
+resources/views/admin/approve.blade.php
+resources/views/admin/borrow_request.blade.php
+routes/web.php
+
+487e24a Wed Feb 12 20:03:01 2025 Backup: Updated project files hp
+DATABASE FILES/txt/git
+
+3120e5d Tue Feb 11 03:05:45 2025 tried anothe pc okkkkk
+DATABASE FILES/txt/git
+package-lock.json
+resources/views/admin/borrow_request.blade.php
+
+a855d7b Mon Feb 10 22:37:54 2025 Update notes
+DATABASE FILES/txt/notes
+
+f901736 Mon Feb 10 22:33:52 2025 accept
+DATABASE FILES/txt/git
+DATABASE FILES/txt/notes
+app/Http/Controllers/AdminController.php
+app/Models/Borrow.php
+composer.json
+composer.lock
+database/migrations/2025_02_10_142426_add_borrow_date_to_borrows_table.php
+resources/views/admin/history.blade.php
+resources/views/admin/sidebar.blade.php
+routes/web.php2

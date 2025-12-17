@@ -1,0 +1,568 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ push/update code to github
+cd "D:\codes yt dl\js"
+$ cd /c/Users/FUJITSU/Documents/js
+cd "C:\Users\HP\Downloads\coding\js"
+https://github.com/Aphea21/react-2nd.git
+git remote set-url origin https://github.com/Aphea21/transport.git
+git remote -v
+git add .
+git commit -m "Backup: Updated project files"
+git push origin main
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ update code in another device from gihub
+cd /c/Users/FUJITSU/Documents/js
+cd "C:\Users\HP\Downloads\coding\js"
+cd "C:\xampp\htdocs\library"
+cd "C:\xampp\htdocs\construction"
+git branch
+git checkout main
+git pull https://github.com/Aphea21/library.git
+git pull https://github.com/Aphea21/js.git
+git log
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ history commits device from local
+ cd /c/Users/FUJITSU/Documents/js
+$ git log --pretty=format:"%h - %an, %ad : %s" --date=iso
+9cf6dca - Aphea21, 2025-01-30 01:27:50 +0800 : designing
+a55043a - Aphea21, 2025-01-29 02:47:57 +0800 : keydown
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Git: Create a New Repository and Push Code
+
+# Step 1: Navigate to your project folder
+cd ~/Downloads/react-2nd  
+
+# Step 2: Initialize a new Git repository (if not already initialized)
+git init  
+
+# Step 3: Add a new remote repository (Replace with your GitHub repo URL)
+git remote add origin https://github.com/Aphea21/transport.git
+git remote add origin https://github.com/Aphea21/tracking-meeting.git
+# Step 4: Stage all files for commit
+git add .  
+
+# Step 5: Commit the changes with a message
+git commit -m "Initial commit for new repository"  
+
+# Step 6: Push the code to GitHub
+git branch -M main  
+git push -u origin main  
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Generate application encryption key
+php artisan key:generate  # Generates a unique APP_KEY in the .env file
+
+# Clear cache and apply changes
+php artisan config:clear  # Clears cached configurations
+php artisan cache:clear   # Clears Laravel cache
+
+# Restart the Laravel development server
+php artisan serve  # Starts the local development server at http://127.0.0.1:8000
+
+# Additional step (if needed): Manually check .env file
+# Ensure APP_KEY exists in .env
+# APP_KEY=base64:your_generated_key_here
+
+
+npm install   # Installs project dependencies, including Vite  
+npm run build   # Generates production assets, including manifest.json  
+npm run dev   # Starts Vite development server for live updates  
+php artisan optimize:clear   # Clears Laravel cache to refresh settings  
+php artisan serve   # Starts Laravel's local development server  
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Clone a GitHub Repository
+
+# Step 1: Navigate to the directory where you want to clone the repository
+cd ~/Downloads  
+
+# Step 2: Clone the repository (Replace with your GitHub repo URL)
+git clone https://github.com/Aphea21/constrution.git  
+git clone https://github.com/Aphea21/lanz.git
+# Step 3: Move into the cloned repository
+cd constrution 
+
+# Step 4: Verify the repository was cloned
+git status  
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Check the status of the local repository
+git status  # Shows uncommitted changes before pulling
+
+# Fetch the latest changes from the remote repository
+git fetch origin  # Downloads updates without merging
+
+# View recent commits and updates
+git log --oneline --graph --all --decorate  # Displays commit history in a readable format
+
+# Pull the latest changes from the remote repository
+git pull origin main  # Merges updates into the local branch (replace 'main' if needed)
+
+# Resolve merge conflicts if any
+git add .  # Stages all resolved files
+git commit -m "Resolved merge conflicts"  # Commits after fixing conflicts
+
+# Verify changes and restart Laravel
+php artisan serve  # Runs the Laravel server to check if issues are resolved
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Git Force Pull Summary
+# Reset any local changes (WARNING: This will discard uncommitted changes)
+git reset --hard HEAD  # Resets local changes to the latest committed state
+
+# Fetch the latest changes from the remote repository
+git fetch origin  # Downloads updates without merging
+
+# Forcefully reset local branch to match remote (WARNING: This will overwrite local changes)
+git reset --hard origin/main  # Replaces 'main' with the correct branch if needed
+
+# Pull the latest changes from the remote repository
+git pull origin main --force  # Forces the update even if there are conflicts
+
+# Verify changes and restart Laravel
+php artisan serve  # Runs the Laravel server to check if issues are resolved
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+
+Git Command: Show All Commits with Dates, Times, and Changed Files
+
+Command:
+git log --name-only --oneline --pretty=format:"%h %ad" --date=local
+
+Explanation:
+- git log       → Displays the commit history
+- --name-only   → Lists the changed files for each commit
+- --oneline     → Shows each commit in a single line (short format)
+- --pretty=format:"%h %ad" → Customizes the output to show:
+  - %h → Short commit hash (e.g., abc123)
+  - %ad → Commit date and time
+- --date=local  → Ensures the date is displayed in the local timezone
+
+Example Output:
+abc123 Mon Feb 24 14:30:10 2025
+modified_file1.js
+updated_style.css
+
+def456 Sun Feb 23 10:15:00 2025
+index.html
+script.js
+
+Variations:
+1. Show only the last 5 commits:
+   git log --name-only --oneline --pretty=format:"%h %ad" --date=local -n 5
+
+2. Show commits with full messages:
+   git log --name-only --pretty=format:"%h %ad %s" --date=local
+   - %s → Shows the commit message
+
+3. Show commits by a specific author:
+   git log --author="John Doe" --name-only --oneline --pretty=format:"%h %ad" --date=local
+
+4. Show commits in a specific date range:
+   git log --since="2025-02-20" --until="2025-02-24" --name-only --oneline --pretty=format:"%h %ad" --date=local
+
+This command helps track changes, review commits, and see when specific files were modified.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+5️⃣ Set the New Remote Repository
+If a remote already exists and you need to replace it, first remove it:
+
+git remote remove origin  
+Then, add your new repository:
+
+git remote add origin https://github.com/your-username/your-repo.git  
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```sh
+# 🌿 Check the current Git branch
+git branch
+# ➤ This command lists all local branches.
+# ➤ The one with an asterisk (*) is the currently active branch.
+
+# ✅ Example output:
+# * main
+#   errors1
+
+# 📌 Alternatively, use:
+git status
+# ➤ This will show your current branch and its status.
+# ➤ Example:
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# 🌴 To switch to another branch:
+git checkout branch-name
+# ➤ Replace 'branch-name' with the actual branch you want to switch to.
+# ➤ Example: git checkout errors1
+
+# 🆕 To create and switch to a new branch:
+git checkout -b new-branch-name
+# ➤ This creates a new branch and checks it out immediately.
+git checkout -b breeze
+# 🔄 To update your current branch with changes from the remote:
+git pull origin branch-name
+# ➤ Replace 'branch-name' with the name of the remote branch.
+# ➤ Example: git pull origin main
+
+# ⚠️ If you must force the pull (overwriting local changes):
+git fetch origin
+git reset --hard origin/branch-name
+# ➤ WARNING: This will discard all local changes and match the remote exactly.
+# ➤ Only use this when you're sure you want to overwrite local code.
+
+# 💡 Summary:
+# - Use `git branch` or `git status` to know which branch you're on.
+# - `git checkout` to switch, `git checkout -b` to create new.
+# - `git pull` or `git fetch + reset` to get remote changes.
+```
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```sh
+# Push errors1 branch to remote main branch (replace remote main with errors1)
+git checkout errors1
+git push origin errors1:main
+
+# OR (force it if needed)
+git push -f origin errors1:main
+
+# Safer merge alternative:
+git checkout main
+git pull origin main
+git merge errors1
+git push origin main
+```
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+```sh
+# Delete local branch
+git branch -d branch  # use -D to force
+
+# Delete remote branch
+git push origin --delete YADAG_BLOCK2_ERROR
+```
+
+
+```sh
+# Push local branch 'YADAG_BLOCK2_ERROR' to remote as 'error2'
+git push origin YADAG_BLOCK2_ERROR:error2
+```
+# force Push local commit changes
+git push origin main --force
+
+# Initialize a new Git repository
+git init
+
+AFTER CREATE Repository IN GitHub
+
+# Add all files to staging area
+git add .
+
+# Commit changes
+git commit -m "first commit"
+
+# Rename the current branch to 'main'
+git branch -M main
+
+# Add a remote origin (remove first if it already exists)
+git remote remove origin  # optional, only if it already exists
+git remote add origin https://github.com/Aphea21/reactE-CommerceSiteCalculator-Connect4Game.git
+
+# Push to remote 'main' branch
+git push -u origin main
+
+# if still not login to local to your what push account or switch account in your guthub
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+php artisan db:seed --class=ProductSeeder 
+php artisan db:seed --class=CustomerSeeder 
+php artisan db:seed --class=UserSeeder
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+git branch -m new-bakery-mano2 bakery-mano
+git push origin -u bakery-mano
+git push origin --delete new-bakery-mano2
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+# Git Session Summary (Windows CMD)
+
+## Initial Repository State
+- Repository already initialized in `C:/xampp/htdocs/bakery/.git/`
+- Local branches:
+  - `main` (active)
+  - `master`
+- Remote branches:
+  - `origin/main`
+
+## Fetching from Remote
+- Ran `git fetch origin`
+- Updates received from `https://github.com/Aphea21/bakery`
+- New remote branch detected: `origin/bakery-mano2`
+
+## Checking Out Remote Branch
+- Command: `git checkout bakery-mano2`
+- New local branch `bakery-mano2` created, tracking `origin/bakery-mano2`
+- Switched to `bakery-mano2`
+
+## Syncing with Remote
+- `git pull origin bakery-mano2` → Already up to date  
+- `git pull origin bakery-mano2 --force` → Already up to date  
+- `git reset --hard bakery-mano2` → Reset HEAD to commit `c16e329 (few model/seeder)`  
+- `git pull --rebase origin bakery-mano2` → Already up to date  
+
+## Errors Encountered
+- Multiple lines like:
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Got it ✅ — here’s a single **ready-to-copy Markdown file** with inline comments using `//` for explanations:
+
+```markdown
+# Bakery Project Setup Summary
+
+## Repository Setup
+- Pulled latest repo into:
+```
+
+C:\xampp\htdocs\bakery-bakery-mano2\bakery
+
+````
+
+## Branch Management
+```bash
+git fetch origin
+git checkout bakery-mano2
+````
+
+* Local branch `bakery-mano2` is now tracking `origin/bakery-mano2`.
+  // you are on the correct working branch
+
+## Dependency Installation
+
+```bash
+npm install
+```
+
+* Installed 92 packages successfully.
+* **Warnings:** Node.js version = `v20.16.0`
+  Some packages (`vite@7.1.5`, `laravel-vite-plugin@2.0.1`) require `^20.19.0` or `>=22.12.0`.
+  // this may cause runtime issues if Node isn’t updated
+
+## Next Steps
+
+```bash
+// update npm to latest
+npm install -g npm@11.6.0
+
+// check node version
+node -v
+
+// if needed, update Node.js to >=20.19.0 or >=22.12.0
+// download: https://nodejs.org/en/download
+
+// reinstall deps after update
+npm install
+
+// start vite dev server for frontend
+npm run dev
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+### ✅ How to See Where the New Commits Really Are
+
+Run these commands:
+
+```sh
+# Check your current branch
+git branch --show-current
+
+# See local commits
+git log --oneline --graph --decorate -10
+
+# See remote commits
+git fetch origin
+git log origin/bakery-mano2 --oneline --graph --decorate -10
+```
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+| Step | Command                      | Purpose                       |
+| ---- | ---------------------------- | ----------------------------- |
+| 1    | `composer install`           | Install PHP dependencies      |
+| 2    | `npm install`                | Install frontend dependencies |
+| 3    | `cp .env.example .env`       | Create env config             |
+| 4    | `php artisan key:generate`   | Generate encryption key       |
+| 5    | `php artisan migrate --seed` | Create tables and sample data |
+| 6    | `php artisan storage:link`   | Link storage for file access  |
+| 7    | `npm run dev`                | Compile assets                |
+| 8    | `php artisan serve`          | Run app locally               |
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+If you want to **merge all text files in a folder into a single `.txt` file using the Command Prompt** in Windows, you can do it with a simple command. Here's how:
+
+---
+
+1. **Open Command Prompt** and navigate to your folder. For example:
+
+```cmd
+cd C:\Users\HP\Downloads\myfolder
+```
+
+2. **Merge all `.php` (or `.txt`) files into one file**:
+
+```cmd
+type *.php > merged.txt
+```
+
+* `*.php` → selects all PHP files in the folder.
+* `>` → redirects the output into a new file called `merged.txt`.
+* If `merged.txt` already exists, it will **overwrite** it.
+
+3. **If you want to append instead of overwrite**:
+
+```cmd
+type *.php >> merged.txt
+```
+
+* `>>` → appends the content instead of overwriting.
+
+4. **Including subfolders recursively** (if you have files inside subfolders too):
+
+```cmd
+for /r %i in (*.php) do type "%i" >> merged.txt
+```
+
+* `/r` → recursively goes through subfolders.
+* `%i` → variable representing each file.
+* `>> merged.txt` → appends each file’s content.
+
+---
+
+✅ After running this, you’ll have a single `merged.txt` containing all your PHP file contents.
+
+If you want, I can give you a **version that merges them in alphabetical order by filename**, which is perfect if you want Laravel migrations merged correctly. Do you want me to do that?
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+FUJITSU@Oprekin-PC MINGW64 ~
+$ cd "D:\codes yt dl\js"
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git remote -v
+origin  https://github.com/Aphea21/js.git (fetch)
+origin  https://github.com/Aphea21/js.git (push)
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git add .
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git commit -m "Backup: Updated project files"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$ git push origin main
+
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 358.95 KiB | 3.07 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Aphea21/js.git
+   bbf7857..546dd11  main -> main
+
+
+FUJITSU@Oprekin-PC MINGW64 /d/codes yt dl/js (main)
+$
+
+
+FUJITSU@Oprekin-PC MINGW64 /
+$ cd /c/Users/FUJITSU/Documents/js
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ gi branch
+bash: gi: command not found
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git branch
+* main
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git checkut main
+git: 'checkut' is not a git command. See 'git --help'.
+
+The most similar command is
+        checkout
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git checkout main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git pull original main
+fatal: 'original' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git pull https://github.com/Aphea21/js.git
+
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 1.99 KiB | 15.00 KiB/s, done.
+From https://github.com/Aphea21/js
+ * branch            HEAD       -> FETCH_HEAD
+Updating 10bc320..361281c
+Fast-forward
+ boolean.html | 104 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 103 insertions(+), 1 deletion(-)
+
+FUJITSU@Oprekin-PC MINGW64 ~/Documents/js (main)
+$ git log
+commit 361281c32aa078a6f28f767c70cef3adf1fa9828 (HEAD -> main)
+Author: Aphea21 <johnnybrader08@gmail.com>
+Date:   Tue Jan 21 21:51:37 2025 +0800
+
+    guard
+
+commit 10bc3204a7738dd6b8535d8ff6b2c242e10952ae (origin/main)
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:28:29 2025 +0800
+
+    truthy
+
+commit 546dd1175c575c4d488f748581ce5635feaec52c
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:16:30 2025 +0800
+
+    Initial commit: truthy
+
+commit bbf7857d1cfe18b179c334506a29f1ecafced3fc
+Author: Aphea21 <Aphea21@users.noreply.github.com>
+Date:   Tue Jan 21 02:05:25 2025 +0800
+
+    s
+
+:

@@ -1,0 +1,198 @@
+Perfect. I’ll lock this now as a **clean, STANDARD, DEFENSIBLE role-based color system** — **same style, same layout, only accent colors change**.
+This is **enterprise-safe** and **panel-safe**.
+
+---
+
+# 🎨 UI / UX COLOR SYSTEM (ROLE-BASED) — FINAL (UPDATED)
+
+## 🧩 DESIGN RULE (IMPORTANT)
+
+* ✅ Same layout for all panels
+* ✅ Same components (cards, tables, forms)
+* ✅ Same typography & spacing
+* 🔁 Only **ACCENT COLORS** change per role
+
+This keeps **one system identity** while giving **instant role context**.
+
+---
+
+# 🌐 GLOBAL BASE COLORS (ALL ROLES)
+
+These **never change**.
+
+| UI Element     | Color     | Usage         |
+| -------------- | --------- | ------------- |
+| App Background | `#F8FAFC` | Whole app     |
+| Card / Panel   | `#FFFFFF` | Forms, tables |
+| Primary Text   | `#0F172A` | Titles        |
+| Secondary Text | `#475569` | Labels        |
+| Borders        | `#E2E8F0` | Card outlines |
+| Table Header   | `#F1F5F9` | Tables        |
+| Divider        | `#CBD5E1` | Lines         |
+
+### Status Colors (Universal)
+
+| Status  | Color     |
+| ------- | --------- |
+| Success | `#16A34A` |
+| Pending | `#F59E0B` |
+| Danger  | `#DC2626` |
+| Info    | `#0EA5E9` |
+
+---
+
+# 👑 OWNER PANEL (Accent: **Deep Blue**)
+
+**Purpose:** Control, analytics, authority
+
+### Accent Colors
+
+| Usage          | Color     |
+| -------------- | --------- |
+| Accent Primary | `#2563EB` |
+| Accent Hover   | `#1D4ED8` |
+| Accent Soft BG | `#DBEAFE` |
+| Accent Border  | `#93C5FD` |
+
+### UI Application
+
+* Sidebar active item → Blue
+* Primary buttons → Blue
+* Dashboard highlights → Blue
+* Charts → Blue + Green only
+
+### Modules
+
+| Module        | Highlight |
+| ------------- | --------- |
+| Dashboard     | `#2563EB` |
+| Sales Reports | `#16A34A` |
+| Inventory     | `#7C3AED` |
+| Customers     | `#0EA5E9` |
+| Drivers       | `#F59E0B` |
+
+---
+
+# 💼 CASHIER PANEL (Accent: **Emerald Green**)
+
+**Purpose:** Speed, accuracy, transactions
+
+### Accent Colors
+
+| Usage          | Color     |
+| -------------- | --------- |
+| Accent Primary | `#16A34A` |
+| Accent Hover   | `#15803D` |
+| Accent Soft BG | `#DCFCE7` |
+| Accent Border  | `#86EFAC` |
+
+### UI Application
+
+* “New Order” button → Green
+* Payment confirmation → Green
+* Active sidebar → Green
+
+### Modules
+
+| Module         | Highlight |
+| -------------- | --------- |
+| New Order      | `#16A34A` |
+| Payments       | `#22C55E` |
+| Order List     | `#0EA5E9` |
+| Walk-in Orders | `#F59E0B` |
+
+---
+
+# 🚚 DRIVER PANEL (Accent: **Orange**)
+
+**Purpose:** Focus, delivery, movement
+
+### Accent Colors
+
+| Usage          | Color     |
+| -------------- | --------- |
+| Accent Primary | `#F97316` |
+| Accent Hover   | `#EA580C` |
+| Accent Soft BG | `#FFEDD5` |
+| Accent Border  | `#FDBA74` |
+
+### UI Application
+
+* Assigned delivery cards → Orange
+* Status buttons → Orange
+* Active sidebar → Orange
+
+### Modules
+
+| Module              | Highlight |
+| ------------------- | --------- |
+| Assigned Deliveries | `#F97316` |
+| Location / Map      | `#0EA5E9` |
+| Delivered Status    | `#16A34A` |
+
+---
+
+# 🧑 CUSTOMER PANEL (Accent: **Sky Blue**)
+
+**Purpose:** Trust, simplicity
+
+### Accent Colors
+
+| Usage          | Color     |
+| -------------- | --------- |
+| Accent Primary | `#0EA5E9` |
+| Accent Hover   | `#0284C7` |
+| Accent Soft BG | `#E0F2FE` |
+| Accent Border  | `#7DD3FC` |
+
+### UI Application
+
+* “Place Order” → Blue
+* Order status → Green
+* Location pin → Orange
+
+### Modules
+
+| Module       | Highlight |
+| ------------ | --------- |
+| Place Order  | `#0EA5E9` |
+| Order Status | `#16A34A` |
+| Location Pin | `#F97316` |
+| Profile      | `#6366F1` |
+
+---
+
+# 🧱 UI COMPONENT RULES (ALL PANELS)
+
+| Component | Rule                       |
+| --------- | -------------------------- |
+| Header    | White, accent underline    |
+| Sidebar   | White, accent active state |
+| Buttons   | Accent color               |
+| Tables    | Gray base + accent hover   |
+| Forms     | Neutral + accent focus     |
+| Modals    | White + accent header      |
+| Badges    | Status color based         |
+
+---
+
+# 🛡️ WHY THIS IS “STANDARD”
+
+You can defend this by saying:
+
+> “The system follows a unified design system where layout and components are consistent, while accent colors provide visual context for each role to improve orientation and reduce operational errors.”
+
+That is **textbook-correct**.
+
+---
+
+## 🔜 NEXT (OPTIONAL BUT SMART)
+
+I can give you:
+
+1. Tailwind `theme.extend.colors` (ready-to-paste)
+2. Sidebar Blade layout (role-aware)
+3. Button & badge components
+4. Dashboard card UI templates
+
+Just tell me **which one first**.
