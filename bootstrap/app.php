@@ -13,6 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role' => \App\Http\Middleware\Role::class,
+                'otp-verified' => \App\Http\Middleware\EnsureOtpVerified::class,
+
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

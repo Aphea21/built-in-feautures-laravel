@@ -8,6 +8,14 @@ use App\Http\Controllers\AgentController;
 USE Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\OtpController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/otp-verify', [OtpController::class, 'show'])->name('otp.verify');
+    Route::post('/otp-verify', [OtpController::class, 'verify'])->name('otp.verify.submit');
+    Route::post('/otp-resend', [OtpController::class, 'resend'])->name('otp.resend');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,7 +26,7 @@ Route::post('reset-password', [NewPasswordController::class, 'store'])->name('pa
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'otp-verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
