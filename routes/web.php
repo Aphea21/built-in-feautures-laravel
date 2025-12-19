@@ -8,6 +8,8 @@ use App\Http\Controllers\AgentController;
 USE Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+use App\Http\Controllers\Auth\OtpController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,7 +27,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/otp-verify', [OtpController::class, 'show'])->name('otp.verify');
+    Route::post('/otp-verify', [OtpController::class, 'verify']);
+});
 Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });

@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Notifications\OtpNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,19 +24,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        $url = "dashboard";
-
-        if ($request->user()->role == "admin") {
-            $url = "admin/dashboard";
-        } else if($request->user()->role == "agent"){
-            $url = "agent/dashboard";
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+     
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+            $otp = rand(100000, 999999);
+     
+            $user->otp =  $otp;
+            $user->otp_expires_at = now()->addMinutes(10);
+            $user->save();
+     
+            $user->notify(new OtpNotification($otp));
+     
+            return redirect()->route('otp.verify');
         }
-
-        return redirect()->intended($url);
+     
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
     /**
