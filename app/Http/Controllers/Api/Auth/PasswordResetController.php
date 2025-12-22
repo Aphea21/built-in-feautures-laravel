@@ -62,31 +62,35 @@ class PasswordResetController extends Controller
         }
     }
 
-    public function resetPassword(ResetPasswordRequest $request)
-    {
-        $validated = $request->validated();
+  public function resetPassword(ResetPasswordRequest $request)
+{
+    $validated = $request->validated();
 
-  // Use basic OTP verification for password reset (no email verification)
-        $user = $this->otpService->verifyOTP(
-            $validated['email'],
-            $validated['otp']
-        );
+    $user = $this->otpService->verifyOTP(
+        $validated['email'],
+        $validated['otp']
+    );
 
-
-        if (!$user) {
-            return new ErrorResource([
-                'message' => 'Invalid or expired OTP',
-                'status_code' => 400
-            ]);
-        }
-
-        // Clear OTP and mark email as verified
-        $this->otpService->clearOTP($user);
-
-        $user->tokens()->delete();
-
-        return new SuccessResource([
-            'message' => 'Password reset successfully'
+    if (!$user) {
+        return new ErrorResource([
+            'message' => 'Invalid or expired OTP',
+            'status_code' => 400
         ]);
     }
+
+    // 🔴 THIS WAS MISSING
+    $user->password = Hash::make($validated['password']);
+    $user->save();
+
+    // Clear OTP after password update
+    $this->otpService->clearOTP($user);
+
+    // Logout from all devices
+    $user->tokens()->delete();
+
+    return new SuccessResource([
+        'message' => 'Password reset successfully'
+    ]);
+}
+
 }
