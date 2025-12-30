@@ -10,6 +10,8 @@
 
 
     <button type="submit">Register</button>
+    <a href="{{ route('forgot-password') }}">Forgot Password?</a>
+
 </form>
 @if ($errors->any())
     <div>

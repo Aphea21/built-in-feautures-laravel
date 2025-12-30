@@ -3,29 +3,40 @@
 @endif
 
 @if ($errors->any())
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li style="color: red;">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+        @endforeach
+    </ul>
 @endif
 
+{{-- VERIFY OTP FORM --}}
 <form action="{{ route('verify-otp') }}" method="POST">
     @csrf
 
-    <input type="hidden" name="email;" value="{{$email}}">
+    <input type="hidden" name="email" value="{{ $email }}">
+
+    <label for="otp">Enter OTP:</label>
+    <input
+        type="text"
+        id="otp"
+        name="otp"
+        placeholder="Enter OTP"
+        required
+    >
+
     <br><br>
 
-   <label for="otp">Enter OTP:</label>
+    <button type="submit">Submit</button>
+</form>
 
-    <input type="password" 
-    id="otp"
-    name="otp" placeholder="Enter OTP" required>
-    <br><br>
-<fqqorm action="{{ route('resend-otp') }}" method="POST">
+<br>
+
+{{-- RESEND OTP FORM --}}
+<form action="{{ route('resend-otp') }}" method="POST">
     @csrf
-    <input type="hidden" name="email" value="{{$email}}">
+
+    <input type="hidden" name="email" value="{{ $email }}">
+
     <button type="submit">Resend OTP</button>
 </form>

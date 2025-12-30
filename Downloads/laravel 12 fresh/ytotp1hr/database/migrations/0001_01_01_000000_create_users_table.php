@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('otp')->nullable();
             $table->string('otp_expires_at')->nullable();
+            $table->timestamp('last_otp_sent_at')->nullable();
+$table->integer('otp_attempts')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
         });
