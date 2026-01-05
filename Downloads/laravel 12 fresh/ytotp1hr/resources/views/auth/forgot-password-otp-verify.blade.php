@@ -17,7 +17,7 @@
     <input type="hidden" name="email" value="{{ $email }}">
 
     <label for="otp">Enter OTP:</label>
-    <input type="text" name="otp" id="otp" placeholder="Enter OTP" required>
+    <input type="text" name="otp" id="otp" placeholder="Enter OTP" maxlength="6" required>
     <br><br>
 
     <button type="submit">Submit</button>
