@@ -27,13 +27,16 @@ public function register(Request $request)
 
     $otp = rand(100000, 999999);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'otp' => $otp,
-        'otp_expires_at' => Carbon::now()->addMinutes(10),
-    ]);
+$user = User::create([
+    'name' => $request->name,
+    'email' => $request->email,
+    'password' => Hash::make($request->password),
+    'otp' => $otp,
+    'otp_expires_at' => Carbon::now()->addMinutes(10),
+    'otp_attempts' => 0,           // ✅ RESET
+    'last_otp_sent_at' => now(),   // ✅ CONSISTENT
+]);
+
 
     // SEND OTP EMAIL (Brevo)
     $response = Http::withHeaders([
@@ -123,7 +126,7 @@ public function verifyOtp(Request $request)
 {
     $request->validate([
         'email' => 'required|email',
-        'otp' => 'required|digits:6',
+        'otp'   => 'required|digits:6',
     ]);
 
     $user = User::where('email', $request->email)->first();
@@ -132,23 +135,36 @@ public function verifyOtp(Request $request)
         return back()->withErrors(['email' => 'User not found.']);
     }
 
-    // Check if user has too many OTP attempts
+    /*
+    |--------------------------------------------------------------------------
+    | 🔒 HARD BLOCK — MAX ATTEMPTS (NEW & CRITICAL)
+    |--------------------------------------------------------------------------
+    | Once max attempts is reached, OTP is INVALID no matter what.
+    | Even if the correct OTP is entered.
+    */
     if ($user->otp_attempts >= 5) {
         return back()->withErrors([
             'otp' => 'You have exceeded the maximum number of OTP attempts. Please request a new OTP.'
         ]);
     }
 
-    // Check OTP expiration
-    if (Carbon::now()->isAfter($user->otp_expires_at)) {
+    /*
+    |--------------------------------------------------------------------------
+    | ⏰ EXPIRATION CHECK
+    |--------------------------------------------------------------------------
+    */
+    if (!$user->otp || Carbon::now()->isAfter($user->otp_expires_at)) {
         return back()->withErrors([
-            'otp' => 'The provided OTP has expired. Please request a new one.'
+            'otp' => 'The OTP has expired. Please request a new one.'
         ]);
     }
 
-    // Check OTP correctness
+    /*
+    |--------------------------------------------------------------------------
+    | ❌ WRONG OTP
+    |--------------------------------------------------------------------------
+    */
     if ($user->otp !== $request->otp) {
-        // Increment OTP attempts
         $user->increment('otp_attempts');
 
         return back()->withErrors([
@@ -156,19 +172,28 @@ public function verifyOtp(Request $request)
         ]);
     }
 
-    // OTP correct → reset OTP, attempts, and mark verified
+    /*
+    |--------------------------------------------------------------------------
+    | ✅ SUCCESS — OTP CORRECT
+    |--------------------------------------------------------------------------
+    | Reset EVERYTHING
+    */
     $user->update([
         'email_verified_at' => Carbon::now(),
-        'otp' => null,
-        'otp_expires_at' => null,
-        'otp_attempts' => 0,
+        'otp'               => null,
+        'otp_expires_at'    => null,
+        'otp_attempts'      => 0,
+        'last_otp_sent_at'  => null,
     ]);
 
-    // Login the user
     Auth::login($user);
 
-    return redirect()->route('home')->with('success', 'OTP verified successfully!');
+    return redirect()
+        ->route('home')
+        ->with('success', 'OTP verified successfully!');
 }
+
+
 
 public function resendOtp(Request $request)
 {
@@ -178,9 +203,13 @@ public function resendOtp(Request $request)
 
     $user = User::where('email', $request->email)->first();
 
-    // Check cooldown: 60 seconds
-    if ($user->last_otp_sent_at && Carbon::parse($user->last_otp_sent_at)->diffInSeconds(now()) < 60) {
+    // ✅ Cooldown: 60 seconds
+    if (
+        $user->last_otp_sent_at &&
+        Carbon::parse($user->last_otp_sent_at)->diffInSeconds(now()) < 60
+    ) {
         $wait = 60 - Carbon::parse($user->last_otp_sent_at)->diffInSeconds(now());
+
         return back()->withErrors([
             'otp' => "Please wait {$wait} seconds before requesting a new OTP."
         ]);
@@ -188,13 +217,15 @@ public function resendOtp(Request $request)
 
     $otp = rand(100000, 999999);
 
+    // ✅ FULL RESET ON NEW OTP
     $user->update([
         'otp' => $otp,
         'otp_expires_at' => Carbon::now()->addMinutes(10),
-        'last_otp_sent_at' => Carbon::now(), // update timestamp
+        'last_otp_sent_at' => Carbon::now(),
+        'otp_attempts' => 0,
     ]);
 
-    // SEND OTP EMAIL (Brevo)
+    // ✅ SEND EMAIL (KEEP THIS — YOU WERE RIGHT)
     $response = Http::withHeaders([
         'accept' => 'application/json',
         'api-key' => env('BREVO_API_KEY'),
@@ -204,12 +235,10 @@ public function resendOtp(Request $request)
             'name' => env('BREVO_SENDER_NAME'),
             'email' => env('BREVO_SENDER_EMAIL'),
         ],
-        'to' => [
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-            ]
-        ],
+        'to' => [[
+            'name' => $user->name,
+            'email' => $user->email,
+        ]],
         'subject' => 'Your OTP Code',
         'htmlContent' => "
             <h2>Resent OTP Code</h2>
@@ -225,10 +254,9 @@ public function resendOtp(Request $request)
         ]);
     }
 
-    session(['otp_email' => $user->email]);
-
     return back()->with('success', 'A new OTP has been sent to your email.');
 }
+
 public function showForgotPasswordForm()
 {
     return view('auth.forgot-password');
@@ -252,11 +280,13 @@ public function sendForgotPasswordOtp(Request $request)
 
     $otp = rand(100000, 999999);
 
-    $user->update([
-        'otp' => $otp,
-        'otp_expires_at' => Carbon::now()->addMinutes(10),
-        'last_otp_sent_at' => Carbon::now(),
-    ]);
+$user->update([
+    'otp' => $otp,
+    'otp_expires_at' => Carbon::now()->addMinutes(10),
+    'last_otp_sent_at' => Carbon::now(),
+    'otp_attempts' => 0, // ✅ REQUIRED
+]);
+
 
     // Send email (same Brevo)
     $response = Http::withHeaders([
@@ -300,7 +330,7 @@ public function verifyForgotPasswordOtp(Request $request)
 {
     $request->validate([
         'email' => 'required|email|exists:users,email',
-        'otp' => 'required|digits:6',
+        'otp'   => 'required|digits:6',
     ]);
 
     $user = User::where('email', $request->email)->first();
@@ -309,31 +339,62 @@ public function verifyForgotPasswordOtp(Request $request)
         return back()->withErrors(['email' => 'User not found.']);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | 🔒 HARD BLOCK — MAX ATTEMPTS (NEW & REQUIRED)
+    |--------------------------------------------------------------------------
+    */
     if ($user->otp_attempts >= 5) {
-        return back()->withErrors(['otp' => 'Too many attempts. Request a new OTP.']);
+        return back()->withErrors([
+            'otp' => 'Too many OTP attempts. Please request a new OTP.'
+        ]);
     }
 
-    if (Carbon::now()->isAfter($user->otp_expires_at)) {
-        return back()->withErrors(['otp' => 'OTP expired. Request a new OTP.']);
+    /*
+    |--------------------------------------------------------------------------
+    | ⏰ EXPIRATION CHECK
+    |--------------------------------------------------------------------------
+    */
+    if (!$user->otp || Carbon::now()->isAfter($user->otp_expires_at)) {
+        return back()->withErrors([
+            'otp' => 'OTP has expired. Please request a new OTP.'
+        ]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | ❌ WRONG OTP
+    |--------------------------------------------------------------------------
+    */
     if ($user->otp !== $request->otp) {
         $user->increment('otp_attempts');
-        return back()->withErrors(['otp' => 'Incorrect OTP.']);
+
+        return back()->withErrors([
+            'otp' => 'Incorrect OTP.'
+        ]);
     }
 
-    // OTP correct → reset OTP and attempts
+    /*
+    |--------------------------------------------------------------------------
+    | ✅ SUCCESS — ALLOW PASSWORD RESET
+    |--------------------------------------------------------------------------
+    */
     $user->update([
-        'otp' => null,
-        'otp_expires_at' => null,
-        'otp_attempts' => 0,
+        'otp'               => null,
+        'otp_expires_at'    => null,
+        'otp_attempts'      => 0,
+        'last_otp_sent_at'  => null,
     ]);
 
-    session(['reset_email' => $user->email]);
+    session([
+        'reset_email' => $user->email
+    ]);
 
-    // Redirect to reset password page
-    return redirect()->route('reset-password.form')->with('success', 'OTP verified. You can now reset your password.');
+    return redirect()
+        ->route('reset-password.form')
+        ->with('success', 'OTP verified. You can now reset your password.');
 }
+
 
 
 public function showResetPasswordForm()

@@ -22,6 +22,7 @@
         id="otp"
         name="otp"
         placeholder="Enter OTP"
+        maxlength="6"
         required
     >
 
